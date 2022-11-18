@@ -21,7 +21,7 @@ export class Film {
   description: string;
 
   @Column()
-  duration: number;
+  durations: number;
 
   @Column()
   category_id: string
