@@ -1,9 +1,17 @@
 import { Router } from 'express';
 
+import { DeleteCategoryController } from 'src/controller/CategoryController/DeleteCategoryController';
+import { GetAllCategoriesController } from 'src/controller/CategoryController/GetAllCategoriesController';
+import { GetByIdCategoryController } from 'src/controller/CategoryController/GetByIdCategoryController';
+import { UpdateCategoryController } from 'src/controller/CategoryController/UpdateCategoryController';
+import { CreateCategoryController } from '../../../controller/CategoryController/CreateCategoryController';
+
 const routes = Router();
 
-routes.get('/', (req, res) => {
-  return res.json({ message: 'Hellow Dev' });
-});
+routes.post('/categories', new CreateCategoryController().handle);
+routes.get('/categories', new GetAllCategoriesController().handle);
+routes.get('/categories/:id', new GetByIdCategoryController().handle);
+routes.delete('/categories/:id', new DeleteCategoryController().handle);
+routes.put('/categories/:id', new UpdateCategoryController().handle);
 
 export default routes;
