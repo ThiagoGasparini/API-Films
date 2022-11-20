@@ -1,5 +1,6 @@
 import { getRepository } from 'typeorm'
 import { Category } from "@modules/categories/typeorm/entities/Category";
+import AppError from '@shared/errors/AppError';
 
 type CategoryUpdateRequest = {
   id: string;
@@ -14,7 +15,7 @@ export class UpdateCategoryService {
     const category = await repo.findOne(id);
 
     if (!category) {
-      return new Error('Category does not exists');
+      throw new AppError('Category does not exists');
     }
 
     category.name = name ? name : category.name;

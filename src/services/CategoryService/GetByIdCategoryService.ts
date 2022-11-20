@@ -1,5 +1,6 @@
 import { getRepository } from 'typeorm'
 import { Category } from "@modules/categories/typeorm/entities/Category";
+import AppError from '@shared/errors/AppError';
 
 export class GetByIdCategoryService {
   async execute(id: string) {
@@ -8,7 +9,7 @@ export class GetByIdCategoryService {
     const category = await repo.findOne(id);
 
     if (!category) {
-      return new Error('Category does not exists');
+      throw new AppError('Category does not exists');
     }
 
     return category;

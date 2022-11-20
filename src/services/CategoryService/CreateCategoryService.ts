@@ -1,5 +1,6 @@
 import { getRepository } from 'typeorm';
 import { Category } from '@modules/categories/typeorm/entities/Category';
+import AppError from '@shared/errors/AppError';
 
 type CategoryRequest = {
   name: string;
@@ -14,7 +15,7 @@ export class CreateCategoryService {
     const repo = getRepository(Category);
 
     if (await repo.findOne({ name })) {
-      return new Error('Category already exists');
+      throw new AppError('Category already exists');
     }
 
     const category = repo.create({

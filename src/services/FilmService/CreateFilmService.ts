@@ -1,5 +1,6 @@
 import { Category } from "@modules/categories/typeorm/entities/Category";
 import { Film } from "@modules/categories/typeorm/entities/Film";
+import AppError from "@shared/errors/AppError";
 import { getRepository } from "typeorm";
 
 type FilmRequest = {
@@ -15,7 +16,7 @@ export class CreateFilmService {
     const repoCategory = getRepository(Category);
 
     if (!(await repoCategory.findOne(category_id))) {
-      return new Error('Category does not exists');
+      throw new AppError('Category does not exists');
     }
 
     const film = repo.create({ name, description, category_id, durations });
