@@ -24,9 +24,11 @@ export class Film {
   durations: number;
 
   @Column()
-  category_id: string
+  category_id: string;
 
-  @ManyToOne(() => Category)
+  @ManyToOne(() => Category, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'category_id' })
   category: Category;
 
