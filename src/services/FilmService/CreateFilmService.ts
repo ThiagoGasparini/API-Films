@@ -6,8 +6,8 @@ import { getRepository } from "typeorm";
 type FilmRequest = {
   name: string;
   description: string;
-  durations: number;
   category_id: string;
+  durations: number;
 }
 
 export class CreateFilmService {
