@@ -13,13 +13,13 @@
 
    ## 👉 Com Docker
 
-   > :information_source: Rode os serviços com o comando `docker-compose up -d`.
+   > Rode os serviços com o comando `docker-compose up -d`.
 
-   > :information_source: Use o comando `docker-compose exec app bash`.
+   > Use o comando `docker-compose exec app bash`.
 
    - Ele te dará acesso ao terminal interativo do container criado pelo compose, que está rodando em segundo plano.
 
-    > :information_source: Instale as dependências com `npm install` 
+    > Instale as dependências com `npm install` 
 
 </details>
 
