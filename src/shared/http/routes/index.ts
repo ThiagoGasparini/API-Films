@@ -11,6 +11,10 @@ import { CreateCategoryController } from '../../../controller/CategoryController
 import { GetByIdFilmController } from 'src/controller/FilmController/GetByIdFilmController';
 import { DeleteFilmController } from 'src/controller/FilmController/DeleteFilmController';
 import { UpdateFilmController } from 'src/controller/FilmController/UpdateFilmController';
+import { GetAllUserController } from 'src/controller/UserController/GetAllUserController';
+import { CreateUserController } from 'src/controller/UserController/CreateUserController';
+import { CreateLoginController } from 'src/controller/UserController/CreateLoginController';
+import isAuthenticated from 'src/middlewares/isAuthenticated';
 
 const routes = Router();
 
@@ -24,9 +28,10 @@ routes.post(
       description: Joi.string().required,
     },
   }),
+  isAuthenticated,
   new CreateCategoryController().handle
 );
-routes.get('/categories', new GetAllCategoriesController().handle);
+routes.get('/categories', isAuthenticated, new GetAllCategoriesController().handle);
 routes.get(
   '/categories/:id',
   celebrate({
@@ -34,6 +39,7 @@ routes.get(
       id: Joi.string().uuid().required(),
     },
   }),
+  isAuthenticated,
   new GetByIdCategoryController().handle
 );
 routes.delete(
@@ -43,6 +49,7 @@ routes.delete(
       id: Joi.string().uuid().required(),
     },
   }),
+  isAuthenticated,
   new DeleteCategoryController().handle
 );
 routes.put(
@@ -56,6 +63,7 @@ routes.put(
       id: Joi.string().uuid().required(),
     },
   }),
+  isAuthenticated,
   new UpdateCategoryController().handle
 );
 
@@ -71,9 +79,10 @@ routes.post(
       durations: Joi.number().required,
     },
   }),
+  isAuthenticated,
   new CreateFilmController().handle
 );
-routes.get('/films', new GetAllFilmsController().handle);
+routes.get('/films', isAuthenticated, new GetAllFilmsController().handle);
 routes.get(
   '/films/:id',
   celebrate({
@@ -81,6 +90,7 @@ routes.get(
       id: Joi.string().uuid().required(),
     },
   }),
+  isAuthenticated,
   new GetByIdFilmController().handle
 );
 routes.delete(
@@ -90,6 +100,7 @@ routes.delete(
       id: Joi.string().uuid().required(),
     },
   }),
+  isAuthenticated,
   new DeleteFilmController().handle
 );
 routes.put(
@@ -105,7 +116,36 @@ routes.put(
       id: Joi.string().uuid().required(),
     },
   }),
+  isAuthenticated,
   new UpdateFilmController().handle
+);
+
+// Rotas de usuários
+
+routes.get('/users', isAuthenticated, new GetAllUserController().handle);
+routes.post(
+  '/users',
+  celebrate({
+    [Segments.BODY]: {
+      name: Joi.string().required(),
+      email: Joi.string().email().required(),
+      password: Joi.string().required(),
+    },
+  }),
+  new CreateUserController().handle
+);
+
+// Rota de Login
+
+routes.post(
+  '/login',
+  celebrate({
+    [Segments.BODY]: {
+      email: Joi.string().email().required(),
+      password: Joi.string().required(),
+    },
+  }),
+  new CreateLoginController().handle
 );
 
 export default routes;
