@@ -40,6 +40,8 @@ export class CreateFilms1668800713039 implements MigrationInterface {
             columnNames: ['category_id'],
             referencedTableName: 'categories',
             referencedColumnNames: ['id'],
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE',
           },
         ],
       })
