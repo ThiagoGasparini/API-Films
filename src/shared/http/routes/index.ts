@@ -22,13 +22,13 @@ const routes = Router();
 
 routes.post(
   '/categories',
+  isAuthenticated,
   celebrate({
     [Segments.BODY]: {
       name: Joi.string().required(),
-      description: Joi.string().required,
+      description: Joi.string().required(),
     },
   }),
-  isAuthenticated,
   new CreateCategoryController().handle
 );
 routes.get('/categories', isAuthenticated, new GetAllCategoriesController().handle);
@@ -57,7 +57,7 @@ routes.put(
   celebrate({
     [Segments.BODY]: {
       name: Joi.string().required(),
-      description: Joi.string().required,
+      description: Joi.string().required(),
     },
     [Segments.PARAMS]: {
       id: Joi.string().uuid().required(),
@@ -74,9 +74,9 @@ routes.post(
   celebrate({
     [Segments.BODY]: {
       name: Joi.string().required(),
-      description: Joi.string().required,
-      category_id: Joi.string().required,
-      durations: Joi.number().required,
+      description: Joi.string().required(),
+      category_id: Joi.string().required(),
+      durations: Joi.number().required(),
     },
   }),
   isAuthenticated,
@@ -108,9 +108,9 @@ routes.put(
   celebrate({
     [Segments.BODY]: {
       name: Joi.string().required(),
-      description: Joi.string().required,
-      category_id: Joi.string().required,
-      durations: Joi.number().required,
+      description: Joi.string().required(),
+      category_id: Joi.string().required(),
+      durations: Joi.number().required(),
     },
     [Segments.PARAMS]: {
       id: Joi.string().uuid().required(),

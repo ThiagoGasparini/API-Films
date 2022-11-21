@@ -1,4 +1,5 @@
 import { getRepository } from 'typeorm';
+import RedisCache from '@shared/cache/RedisCache';
 import { Category } from '@modules/categories/typeorm/entities/Category';
 import AppError from '@shared/errors/AppError';
 
@@ -18,10 +19,15 @@ export class CreateCategoryService {
       throw new AppError('Category already exists');
     }
 
+    const redisCache = new RedisCache();
+
     const category = repo.create({
       name,
       description,
     });
+
+    await redisCache.invalidate('api-categories-CATEGORY_LIST');
+
     await repo.save(category);
     return category;
   }
