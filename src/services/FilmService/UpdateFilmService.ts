@@ -1,6 +1,7 @@
 import { Film } from '@modules/categories/typeorm/entities/Film';
 import { getRepository } from 'typeorm';
 import AppError from '@shared/errors/AppError';
+import RedisCache from '@shared/cache/RedisCache';
 
 type FilmUpdateRequest = {
   id: string;
@@ -25,6 +26,10 @@ export class UpdateFilmService {
     if (!film) {
       throw new AppError('Category does not exists');
     }
+
+    const redisCache = new RedisCache();
+
+    await redisCache.invalidate('api-films-FILM_LIST');
 
     film.name = name ? name : film.name;
     film.description = description ? description : film.description;
