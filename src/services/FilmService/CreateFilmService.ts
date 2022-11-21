@@ -1,6 +1,5 @@
 import { Category } from "@modules/categories/typeorm/entities/Category";
 import { Film } from "@modules/categories/typeorm/entities/Film";
-import RedisCache from '@shared/cache/RedisCache';
 import AppError from "@shared/errors/AppError";
 import { getRepository } from "typeorm";
 
@@ -20,11 +19,7 @@ export class CreateFilmService {
       throw new AppError('Category does not exists');
     }
 
-    const redisCache = new RedisCache();
-
     const film = repo.create({ name, description, category_id, durations });
-
-    await redisCache.invalidate('api-films-FILM_LIST');
 
     await repo.save(film);
 
