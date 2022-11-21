@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { CreateCategoryService } from 'src/services/CategoryService/CreateCategoryService';
+import { CreateCategoryService } from '../../services/CategoryService/CreateCategoryService';
 
 export class CreateCategoryController {
   async handle(request: Request, response: Response) {

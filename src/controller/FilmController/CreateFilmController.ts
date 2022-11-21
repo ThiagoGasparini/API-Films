@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { CreateFilmService } from 'src/services/FilmService/CreateFilmService';
+import { CreateFilmService } from '../../services/FilmService/CreateFilmService';
 
 export class CreateFilmController {
   async handle(request: Request, response: Response) {

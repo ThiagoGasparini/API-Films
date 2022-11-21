@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { GetByIdCategoryService } from 'src/services/CategoryService/GetByIdCategoryService';
+import { GetByIdCategoryService } from '../../services/CategoryService/GetByIdCategoryService';
 
 export class GetByIdCategoryController {
   async handle(request: Request, response: Response) {

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import {GetByIdFilmService} from 'src/services/FilmService/GetByIdFilmService'
+import {GetByIdFilmService} from '../../services/FilmService/GetByIdFilmService'
 
 export class GetByIdFilmController {
   async handle(request: Request, response: Response) {

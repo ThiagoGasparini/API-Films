@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { DeleteFilmService } from 'src/services/FilmService/DeleteFilmService';
+import { DeleteFilmService } from '../../services/FilmService/DeleteFilmService';
 
 export class DeleteFilmController {
   async handle(request: Request, response: Response) {
