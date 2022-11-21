@@ -12,6 +12,6 @@ export class CreateCategoryController {
       return response.status(400).json(result.message)
     }
 
-    return response.json(result);
+    return response.status(201).json(result);
   }
 }
