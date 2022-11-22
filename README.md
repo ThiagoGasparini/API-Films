@@ -82,10 +82,5 @@
   - A arquitetura foi composta de uma aplicação provendo uma API RESTful em JSON, utilizando do Redis como cache.
   
 ## Deploy da Aplicação:
-  - Foi realizado o deploy da aplicação na DigitalOcean. Não ficou 100% o deploy, confesso que obtive bastante dificuldade!!!
-  - Minha dificuldade com o deploy esta relacionada com o Redis
-  - Segue erro encontrato:
-  
-  "[ioredis] unhandled error event: error: getaddrinfo eai_again redis 0|apifilmes | at getaddrinforeqwrap.onlookup"
-  
-  Link: https://thiagodev.apifilmes.cf/
+  - Foi realizado o deploy da aplicação na DigitalOcean.  
+  - Link: https://thiagodev.apifilmes.cf
