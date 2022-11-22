@@ -80,3 +80,7 @@
 ## Aspectos técnicos
 
   - A arquitetura foi composta de uma aplicação provendo uma API RESTful em JSON, utilizando do Redis como cache.
+  
+## Deploy da Aplicação:
+  - Foi realizado o deploy da aplicação na DigitalOcean. Não ficou 100% o deploy, confesso que obtive bastante dificuldade!!!
+  Link: https://thiagodev.apifilmes.cf/
